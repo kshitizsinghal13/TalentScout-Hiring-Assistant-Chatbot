@@ -116,7 +116,7 @@ if st.session_state.step == 0:
             else:
                 st.session_state.candidate_info['full_name'] = full_name
                 st.session_state.step += 1
-                st.experimental_rerun()
+                st.rerun()
 
 elif st.session_state.step == 1:
     with st.form(key="email_form"):
@@ -128,7 +128,7 @@ elif st.session_state.step == 1:
             else:
                 st.session_state.candidate_info['email'] = email
                 st.session_state.step += 1
-                st.experimental_rerun()
+                st.rerun()
 
 elif st.session_state.step == 2:
     with st.form(key="phone_form"):
@@ -140,7 +140,7 @@ elif st.session_state.step == 2:
             else:
                 st.session_state.candidate_info['phone'] = phone
                 st.session_state.step += 1
-                st.experimental_rerun()
+                st.rerun()
 
 elif st.session_state.step == 3:
     with st.form(key="experience_form"):
@@ -149,7 +149,7 @@ elif st.session_state.step == 3:
         if submit_experience:
             st.session_state.candidate_info['experience'] = experience
             st.session_state.step += 1
-            st.experimental_rerun()
+            st.rerun()
 
 elif st.session_state.step == 4:
     with st.form(key="position_form"):
@@ -159,7 +159,7 @@ elif st.session_state.step == 4:
         if submit_position:
             st.session_state.candidate_info['desired_position'] = desired_position
             st.session_state.step += 1
-            st.experimental_rerun()
+            st.rerun()
 
 elif st.session_state.step == 5:
     with st.form(key="location_form"):
@@ -168,7 +168,7 @@ elif st.session_state.step == 5:
         if submit_location:
             st.session_state.candidate_info['current_location'] = current_location
             st.session_state.step += 1
-            st.experimental_rerun()
+            st.rerun()
 
 elif st.session_state.step == 6:
     with st.form(key="tech_stack_form"):
@@ -184,7 +184,7 @@ elif st.session_state.step == 6:
                         st.session_state.questions.append(question_text)
                 if len(st.session_state.questions) > 0:
                     st.session_state.step += 1
-                    st.experimental_rerun()
+                    st.rerun()
             else:
                 st.error("Please provide a valid tech stack.")
 
@@ -210,7 +210,7 @@ elif st.session_state.step == 7:
                     st.warning("Failed to save your details.")
                 if st.button("Finish the Test"):
                     st.session_state.step += 1
-                    st.experimental_rerun()
+                    st.rerun()
 
         
         
@@ -219,14 +219,14 @@ elif st.session_state.step == 8:
     if st.button("Start Over"):
         for key in list(st.session_state.keys()):
             del st.session_state[key]
-        st.experimental_rerun()
+        st.rerun()
 else:
     st.write("You have answered all the questions.")
     st.session_state.step += 1
-    st.experimental_rerun()
+    st.rerun()
 
 if 'step' in st.session_state and (st.session_state.step < 8):
     if st.button("End Chat"):
         st.session_state.step = 8
         st.write("Chat ended. Thank you!")
-        st.experimental_rerun()
+        st.rerun()
