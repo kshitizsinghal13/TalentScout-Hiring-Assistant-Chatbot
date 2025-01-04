@@ -8,28 +8,28 @@ from datetime import datetime
 import boto3
 import json
 
-def get_api_key():
-    secret_name = "TalentScoutAPIKey"
-    region_name = "eu-north-1"  
+# def get_api_key():
+#     secret_name = "TalentScoutAPIKey"
+#     region_name = "eu-north-1"  
 
-    session = boto3.session.Session()
-    client = session.client(service_name='secretsmanager', region_name=region_name)
+#     session = boto3.session.Session()
+#     client = session.client(service_name='secretsmanager', region_name=region_name)
 
-    try:
-        get_secret_value_response = client.get_secret_value(SecretId=secret_name)
-        secret = get_secret_value_response['SecretString']
-        secret_dict = json.loads(secret)
-        return secret_dict['API_KEY']
-    except Exception as e:
-        print(f"Error retrieving secret: {e}")
-        return None
+#     try:
+#         get_secret_value_response = client.get_secret_value(SecretId=secret_name)
+#         secret = get_secret_value_response['SecretString']
+#         secret_dict = json.loads(secret)
+#         return secret_dict['API_KEY']
+#     except Exception as e:
+#         print(f"Error retrieving secret: {e}")
+#         return None
 
-API_KEY = get_api_key()
+# API_KEY = get_api_key()
 
 
 
 #if you want to run on local host comment out the get_api_key()function and hardcoded your API_KEY as below
-#API_KEY = ""
+API_KEY = "AIzaSyCxK_S56Rr4GPajz-OljM9HssxEj6ht7ww"
 
 def generate_questions(tech_stack):
     prompt = f"Generate 5 short and fundamental technical interview questions for a candidate with skills in {', '.join(tech_stack)}. Always try to give different types of questions. Questions should test basic knowledge in that field. Do not ask multiple choice questions and also do not give any other extra information. Only ask a question. Questions should be short or possible of 2-3-4 word answerable.Always ask different question from your previously asked on that tech-stack"
